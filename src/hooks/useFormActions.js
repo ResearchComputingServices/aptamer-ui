@@ -73,11 +73,37 @@ export default function(entity, locale) {
         }
     };
 
+    const approve = async data => {
+        if (_.isEmpty(data)) return;
+        dataRef.current = data;
+        try {
+            const result = await service.approve(data);
+            ToastsStore.success(`Successfully updated ${locale}`);
+            return result;
+        } catch (err) {
+            ToastsStore.error(`Failed to update ${locale}`);
+        }
+    };
+
+    const decline = async data => {
+        if (_.isEmpty(data)) return;
+        dataRef.current = data;
+        try {
+            const result = await service.decline(data);
+            ToastsStore.success(`Successfully updated ${locale}`);
+            return result;
+        } catch (err) {
+            ToastsStore.error(`Failed to update ${locale}`);
+        }
+    };
+
     return {
         create,
         update,
         remove,
         download,
         cancel,
+        approve,
+        decline,
     };
 }

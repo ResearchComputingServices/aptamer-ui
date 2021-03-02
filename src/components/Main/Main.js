@@ -21,8 +21,6 @@ import {
 import {
     Menu as MenuIcon,
     ExitToApp as ExitToAppIcon,
-    Brightness2 as LightModeIcon,
-    Flare as DarkModeIcon,
 } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
 import MainDrawer from '../MainDrawer';
@@ -117,11 +115,6 @@ function Main({ authenticate }) {
     const { toggle: toggleDrawer } = useActions('drawer');
     const { disable: disableDrawer, hide: hideDrawer } = useActions('drawer');
     const wideScreenMode = useIsWideScreenMode();
-    const theme = useStore('theme');
-    const themeActions = useActions('theme');
-    const isDark = theme.palette.type === 'dark';
-
-    const switchThemeMode = () => themeActions.setMode(!isDark ? 'dark' : 'light');
 
     useEffect(() => {
         const logout = async () => {
@@ -232,7 +225,7 @@ function Main({ authenticate }) {
                                 }
                                 variant='h5'
                             >
-                                React Seed
+                                Online Database
                             </Typography>
                             <UserMenu
                                 displayName={displayName}
@@ -242,11 +235,11 @@ function Main({ authenticate }) {
                                         Icon: <ExitToAppIcon />,
                                         handler: logout,
                                     },
-                                    {
-                                        title: `${!isDark ? 'Dark' : 'Light'} Theme`,
-                                        Icon: !isDark ? <LightModeIcon /> : <DarkModeIcon />,
-                                        handler: switchThemeMode,
-                                    },
+                                    // {
+                                    //     title: `${!isDark ? 'Dark' : 'Light'} Theme`,
+                                    //     Icon: !isDark ? <LightModeIcon /> : <DarkModeIcon />,
+                                    //     handler: switchThemeMode,
+                                    // },
                                 ]}
                             />
                         </Box>

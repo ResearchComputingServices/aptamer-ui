@@ -9,6 +9,12 @@ import UserFieldTypes from '../../components/UserFieldTypes';
 import UserFieldType from '../../components/UserFieldType';
 import Roles from '../../components/Roles';
 import Dashboard from '../../components/Dashboard';
+import Article from '../../components/Article';
+import Articles from '../../components/Articles';
+import ArticleSearch from '../../components/ArticleSearch';
+import TempArticle from '../../components/TempArticle';
+import TempArticles from '../../components/TempArticles';
+import MulipleTempArticles from '../../components/MulipleTempArticles';
 
 export default [
     {
@@ -84,6 +90,46 @@ export default [
     {
         path: '/roles/',
         component: Roles,
+        roles: '*',
+    },
+    {
+        path: '/articles',
+        component: Articles,
+        roles: '*',
+    },
+    {
+        path: '/articles/article',
+        component: Article,
+        roles: '*',
+    },
+    {
+        path: '/articles/article/:id',
+        component: Article,
+        roles: '*',
+    },
+    {
+        path: '/articles/search',
+        component: ArticleSearch,
+        roles: '*',
+    },
+    {
+        path: '/temp-articles',
+        component: TempArticles,
+        roles: '*',
+    },
+    {
+        path: '/temp-articles/temp-article',
+        component: TempArticle,
+        roles: '*',
+    },
+    {
+        path: '/temp-articles/temp-article/:id',
+        component: TempArticle,
+        roles: '*',
+    },
+    {
+        path: '/temp-articles/multiple-temp-article',
+        component: MulipleTempArticles,
         roles: '*',
     },
     {
