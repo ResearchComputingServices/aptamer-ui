@@ -1,20 +1,20 @@
 class ClientConfig {
   getServerURL() {
-    return 'https://rcs-development.carleton.ca'
+    return 'http://localhost'
   }
   getAuthenticationURL () {
-    return this.getServerURL() + ':7024'
+    return this.getServerURL() + ':7026'
   }
   getApi() {
-    return this.getServerURL() + ':7024/onlinedatabase_api'
+    return this.getServerURL() + ':7026/aptamer_api'
   }
 
   // Keycloak stuff
   getRealm() {
-    return 'onlinedatabase'
+    return 'aptamer'
   }
   getClient() {
-    return 'onlinedatabase'
+    return 'aptamer'
   }
   getServer() {
     return 'rcs-development.carleton.ca'
@@ -23,7 +23,7 @@ class ClientConfig {
     return '7010'
   }
   getSecret() {
-    return 'cda34036-54b6-4169-891b-a080499efd85'
+    return 'e9d46585-f0aa-4559-bbaa-71626efe00c6'
   }
   isHTTPS() {
     return true
