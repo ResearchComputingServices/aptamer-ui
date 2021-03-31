@@ -15,7 +15,7 @@ function ArticlesGrid({
             onExport={onExport}
             onImport={onImport}
             onRowClick={onRowClick}
-            title='Articles'
+            title='Aptamer'
         />
     );
 }

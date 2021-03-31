@@ -1,16 +1,14 @@
 import React from 'react';
-import _ from 'lodash';
-// import axios from 'axios';
 import FileSaver from 'file-saver';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import MaterialTable from 'material-table';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
 import { ToastsStore } from 'react-toasts';
 import Box from '@material-ui/core/Box';
-import { useService, useGridColumns, useGridActions } from '../../hooks';
+import DownloadIcon from '@material-ui/icons/GetApp';
+import { useService, useGridColumns, useGridActions, useFormLayout } from '../../hooks';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -22,29 +20,23 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function ArticleSearch({
-    className,
-    style,
-    tableRef,
-    title,
-    onRowClick,
-    onRowAdd,
-    onRowUpdate,
-    onRowDelete,
-    options,
-}) {
+function ArticleSearch() {
     const classes = useStyles();
     const service = useService('searchArticle');
     const [searchTerm, setSearchTerm] = React.useState({});
+    const [advanceSearch, setAdvanceSearch] = React.useState(false);
     const [searchResults, setSearchResults] = React.useState([]);
     const [selection, setSelection] = React.useState([]);
     const columns = useGridColumns('searchArticle');
     const actions = useGridActions('searchArticle');
+    const searchForm = useFormLayout('searchArticle');
 
     const handleCitation = () => {
         try {
+            // to do: Citation should be define based on the type of the item
             const citations = selection.map(item => {
-                const result = `${item.authorOfBook.split(' ')[1]}, ${item.authorOfBook.split(' ')[0][0]}. ${item.year}. ${item.name}. ${item.placeOfPublication}: ${item.publisher}.\r\n`;
+                const result = `${item.authorOfBook.split(' ')[1]}, ${item.authorOfBook.split(' ')[0][0]}.
+                 ${item.yearofpublication}. ${item.name}. ${item.placeOfPublication}: ${item.publisher}.\r\n`;
                 return result;
             });
             const blob = new Blob(citations, { type: 'text/plain;charset=utf-8' });
@@ -54,6 +46,8 @@ function ArticleSearch({
             ToastsStore.error('Failed to export');
         }
     };
+
+    // fetch data for search result
     const fetchData = async query => {
         try {
             const data = await service.get(query);
@@ -67,6 +61,7 @@ function ArticleSearch({
             };
         }
     };
+    // set search term on change of each input field
     const handleChange = e => {
         const { name, value } = e.target;
         setSearchTerm(prevState => ({
@@ -74,12 +69,16 @@ function ArticleSearch({
             [name]: value,
         }));
     };
-
+    // on search button click, fetch data
     const handleSearch = () => {
         fetchData(searchTerm);
     };
 
-    const { name, author, language, year, type } = searchTerm;
+    const handleClearSearch = () => {
+        setSearchTerm({});
+        setSearchResults([]);
+    };
+
     return (
         <>
             <Container maxWidth='md'>
@@ -88,51 +87,31 @@ function ArticleSearch({
                     noValidate
                 >
                     <div>
-                        <TextField
-                            id='standard-multiline-flexible'
-                            label='Title'
-                            multiline
-                            name='name'
-                            onChange={handleChange}
-                            rowsMax={4}
-                            value={name}
-                        />
-                        <TextField
-                            id='standard-multiline-flexible'
-                            label='Author'
-                            multiline
-                            name='authorOfBook'
-                            onChange={handleChange}
-                            rowsMax={4}
-                            value={author}
-                        />
-                        <TextField
-                            id='standard-multiline-flexible'
-                            label='Language'
-                            multiline
-                            name='language'
-                            onChange={handleChange}
-                            rowsMax={4}
-                            value={language}
-                        />
-                        <TextField
-                            id='standard-multiline-flexible'
-                            label='Year'
-                            multiline
-                            name='year'
-                            onChange={handleChange}
-                            rowsMax={4}
-                            value={year}
-                        />
-                        <TextField
-                            id='standard-multiline-flexible'
-                            label='Type'
-                            multiline
-                            name='sourceType'
-                            onChange={handleChange}
-                            rowsMax={4}
-                            value={type}
-                        />
+                        {searchForm && searchForm.map((column, i) => (
+                            <span key={column.field}>
+                                {/* if it's not advance search, just show four fields} */}
+                                {!advanceSearch && i <= 3 ? (
+                                    <TextField
+                                        label={column.title}
+                                        multiline
+                                        name={column.field}
+                                        onChange={handleChange}
+                                        rowsMax={4}
+                                        value={searchTerm[column.field] || ''}
+                                    />
+                                ) : advanceSearch ? (
+                                    // if advance search is true, show all fields
+                                    <TextField
+                                        label={column.title}
+                                        multiline
+                                        name={column.field}
+                                        onChange={handleChange}
+                                        rowsMax={4}
+                                        value={searchTerm[column.field] || ''}
+                                    />
+                                ) : null }
+                            </span>
+                        ))}
                         <Button
                             fullWidth
                             onClick={handleSearch}
@@ -142,6 +121,40 @@ function ArticleSearch({
                         </Button>
                     </div>
                 </form>
+                <Box
+                    display='flex'
+                    justifyContent='center'
+                    pt={2}
+                >
+                    <Box mr={1}>
+                        <Button
+                            color='primary'
+                            onClick={() => setAdvanceSearch(prev => !prev)}
+                            variant='contained'
+                        >
+                            Advance Search
+                        </Button>
+                    </Box>
+                    <Box mr={1}>
+                        <Button
+                            color='primary'
+                            onClick={() => actions.onExport(null, null, searchTerm)}
+                            startIcon={<DownloadIcon />}
+                            variant='contained'
+                        >
+                            Export the search result
+                        </Button>
+                    </Box>
+                    <Box mr={1}>
+                        <Button
+                            color='primary'
+                            onClick={() => handleClearSearch()}
+                            variant='contained'
+                        >
+                            Clear Search
+                        </Button>
+                    </Box>
+                </Box>
             </Container>
             <br />
 
@@ -149,70 +162,28 @@ function ArticleSearch({
             && (
                 <Box>
                     <MaterialTable
-                        actions={[
-                            {
-                                icon: 'download',
-                                tooltip: 'Export Citation',
-                                onClick: () => handleCitation(),
-                            },
-                        ]}
-                        className={className}
+                        //actions={[
+                            //{
+                                //icon: 'download',
+                                //tooltip: 'Export Citation',
+                                //onClick: () => handleCitation(),
+                            //},
+                        //]}
                         columns={columns}
                         data={searchResults}
-                        editable={{
-                            onRowAdd,
-                            onRowUpdate,
-                            onRowDelete,
-                        }}
-                        localization={{ header: { selections: 'Citation' } }}
-                        onRowClick={_.isFunction(onRowClick) ? onRowClick : undefined}
-                        onSelectionChange={data => setSelection(data)}
-                        options={{
-                            exportButton: true,
-                            exportCsv: () => {
-                                actions.onExport(null, null, searchTerm);
-                            },
-                            selection: true,
-                            search: false,
-                            filtering: false,
-                            ..._.omit(options, ['format', 'exclude', 'query']),
-                        }}
-                        style={{
-                            ...style,
-                            ...{ padding: 20 },
-                        }}
-                        tableRef={tableRef}
-                        title={title}
+                        //onSelectionChange={data => setSelection(data)}
+                        //options={{
+                            //selection: true,
+                            //search: false,
+                            //filtering: false,
+                        //}}
+                        style={{ padding: 20 }}
+                        title='Search Result'
                     />
                 </Box>
-
             )}
         </>
     );
 }
-
-ArticleSearch.propTypes = {
-    title: PropTypes.string,
-    onRowAdd: PropTypes.func,
-    onRowUpdate: PropTypes.func,
-    onRowDelete: PropTypes.func,
-    onRowClick: PropTypes.func,
-    options: PropTypes.object,
-    tableRef: PropTypes.object,
-    className: PropTypes.string,
-    style: PropTypes.object,
-};
-
-ArticleSearch.defaultProps = {
-    options: {},
-    title: '',
-    onRowClick: undefined,
-    onRowAdd: undefined,
-    onRowUpdate: undefined,
-    onRowDelete: undefined,
-    tableRef: undefined,
-    className: undefined,
-    style: undefined,
-};
 
 export default ArticleSearch;
