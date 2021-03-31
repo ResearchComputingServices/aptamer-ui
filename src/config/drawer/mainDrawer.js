@@ -22,13 +22,13 @@ export default [
     },
     {
         path: '/articles',
-        title: 'Articles',
+        title: 'Aptamer',
         Icon: MenuBookIcon,
         roles: ['Administrator', 'Researcher'],
     },
     {
         path: '/articles/search',
-        title: 'Search Articles',
+        title: 'Search Aptamer',
         Icon: SearchIcon,
         roles: '*',
     },
@@ -44,21 +44,21 @@ export default [
             },
             {
                 path: '/temp-articles/temp-article',
-                title: 'Add One Item',
+                title: 'Add One Aptamer',
                 roles: '*',
             },
             {
                 path: '/temp-articles/multiple-temp-article',
-                title: 'Add Multiple Items',
+                title: 'Add Multiple Aptamer',
                 roles: '*',
             },
         ],
     },
-    {
-        name: 'settings',
-        title: 'Settings',
-        Icon: SettingsIcon,
-        items: [
+    //{
+        //name: 'settings',
+        //title: 'Settings',
+        //Icon: SettingsIcon,
+        //items: [
             // {
             //     path: '/user-fields/',
             //     title: 'User Fields',
@@ -74,11 +74,11 @@ export default [
             //     title: 'Enumerations',
             //     roles: '*',
             // },
-            {
-                path: '/roles/',
-                title: 'Roles',
-                roles: ['Administrator'],
-            },
-        ],
-    },
+            //{
+                //path: '/roles/',
+                //title: 'Roles',
+                //roles: ['Administrator'],
+            //},
+        //],
+    //},
 ];

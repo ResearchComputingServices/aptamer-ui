@@ -15,7 +15,7 @@ function TempArticlesGrid({
             onExport={onExport}
             onImport={onImport}
             onRowClick={onRowClick}
-            title='Temp Articles'
+            title='Temp Apatmer'
         />
     );
 }

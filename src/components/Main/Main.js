@@ -30,6 +30,7 @@ import {
 } from '..';
 import UserMenu from './UserMenu';
 import Authenticating from './Authenticating';
+import Confirmation from '../common/Confirmation';
 import {
     useMount,
     useActions,
@@ -225,7 +226,7 @@ function Main({ authenticate }) {
                                 }
                                 variant='h5'
                             >
-                                Online Database
+                                Aptamer Database
                             </Typography>
                             <UserMenu
                                 displayName={displayName}
@@ -256,6 +257,7 @@ function Main({ authenticate }) {
                         position='bottom_left'
                         store={ToastsStore}
                     />
+                    <Confirmation />
                 </main>
             </>
         );
