@@ -39,32 +39,7 @@ function UserForm({
                             display='flex'
                             justifyContent='flex-end'
                         >
-                            <Box width={380}>
-                                <ApiPicklistField
-                                    controls={controls}
-                                    field={{
-                                        name: 'selectedDemographicField',
-                                        label: 'User Fields',
-                                        type: 'api-picklist-multiple',
-                                        entity: 'userField',
-                                        filter: selectedDemographicFieldsFilter,
-                                    }}
-                                />
-                                <Box
-                                    mr={2}
-                                    mt={1}
-                                >
-                                    <Button
-                                        color='primary'
-                                        disabled={disableAddDemographicField}
-                                        onClick={onAddDemographicField}
-                                        size='small'
-                                        variant='contained'
-                                    >
-                                        Add Demographic Field
-                                    </Button>
-                                </Box>
-                            </Box>
+
                         </Box>
                     </>
                 ),

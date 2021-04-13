@@ -1,15 +1,11 @@
 export default [
-    //{
-        //field: 'name',
-        //title: 'Title',
-        //required: false,
-    //},
+
     {
         field: 'pubmedid',
         title: 'PubMed ID',
         //type: 'picklist',
         //options: ['book', 'chapter of edited volume', 'article in academic journal', 'article in other periodicals', 'data (audio)', 'data (visual)', 'data (multimodal)', 'Other'],
-        required: true,
+        required: false,
     },
     {
         field: 'doinumber',
@@ -38,7 +34,7 @@ export default [
     },
     {
         field: 'templatesequence',
-        title: 'Template Sequence',
+        title: 'Template sequence: e.g., GCAATGGTACGGTACTGTC-N40-AATCAGTGCACGCTACTTTGCTAA',
         required: false,
     },
     {

@@ -8,12 +8,12 @@ import {
 } from '@material-ui/icons';
 
 export default [
-    {
-        path: '/dashboard',
-        title: 'Dashboard',
-        roles: ['Administrator'],
-        Icon: DashboardIcon,
-    },
+    //{
+        //path: '/dashboard',
+        //title: 'Dashboard',
+        //roles: ['Administrator'],
+        //Icon: DashboardIcon,
+    //},
     {
         path: '/users',
         title: 'Users',

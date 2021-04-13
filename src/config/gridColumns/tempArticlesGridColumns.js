@@ -29,7 +29,7 @@ export default [
     },
     {
         field: 'templatesequence',
-        title: 'Template Sequence',
+        title: 'Template sequence: e.g., GCAATGGTACGGTACTGTC-N40-AATCAGTGCACGCTACTTTGCTAA',
     },
     {
         field: 'lengthofrandomregion',
@@ -156,4 +156,12 @@ export default [
         field: 'notes',
         title: 'Notes',
     },
+    {
+        field: 'operator',
+        title: 'Operator',
+    },
+    //{
+        //field: 'createdDatetime',
+        //title: 'Time',
+    //},
 ];

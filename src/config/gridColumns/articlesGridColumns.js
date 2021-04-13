@@ -29,7 +29,7 @@ export default [
     },
     {
         field: 'templatesequence',
-        title: 'Template Sequence',
+        title: 'Template sequence: e.g., GCAATGGTACGGTACTGTC-N40-AATCAGTGCACGCTACTTTGCTAA',
     },
     {
         field: 'lengthofrandomregion',
