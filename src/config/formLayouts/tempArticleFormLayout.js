@@ -7,7 +7,7 @@ export default [
     {
         field: 'pubmedid',
         title: 'PubMed ID',
-        required: true,
+        required: false,
     },
     {
         field: 'doinumber',
@@ -36,7 +36,7 @@ export default [
     },
     {
         field: 'templatesequence',
-        title: 'Template Sequence',
+        title: 'Template sequence: e.g., GCAATGGTACGGTACTGTC-N40-AATCAGTGCACGCTACTTTGCTAA',
         required: false,
     },
     {
