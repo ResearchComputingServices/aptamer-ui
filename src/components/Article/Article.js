@@ -112,7 +112,7 @@ function Article({ match }) {
                     onValueAdd={onValueAdd}
                     onValueDelete={onValueDelete}
                     onValueUpdate={onValueUpdate}
-                    title={`${!_.isNil(id) ? 'Edit' : 'New'} Article`}
+                    title={`${!_.isNil(id) ? 'Edit' : 'New'} Aptamer`}
                     values={values}
                 />
             ));
