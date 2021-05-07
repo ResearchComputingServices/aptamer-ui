@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     palette: {
-        type: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
+        type: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'light' : 'light',
         primary: {
             main: '#CF112D',
             contrastText: '#ffffff',
