@@ -23,6 +23,10 @@ import {
     ExitToApp as ExitToAppIcon,
 } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
+import {
+    Brightness2 as LightModeIcon,
+    Flare as DarkModeIcon,
+} from '@material-ui/icons';
 import MainDrawer from '../MainDrawer';
 import {
     Error,
@@ -91,6 +95,12 @@ export const useStyles = makeStyles(theme => ({
 function Main({ authenticate }) {
     const classes = useStyles();
     const dimensions = useWindowSize();
+    const theme = useStore('theme');
+    const themeActions = useActions('theme');
+    const isDark = theme.palette.type === 'dark';
+
+    const switchThemeMode = () => themeActions.setMode(!isDark ? 'dark' : 'light');
+
     const [
         interceptorService,
         keycloakService,
@@ -236,11 +246,11 @@ function Main({ authenticate }) {
                                         Icon: <ExitToAppIcon />,
                                         handler: logout,
                                     },
-                                    // {
-                                    //     title: `${!isDark ? 'Dark' : 'Light'} Theme`,
-                                    //     Icon: !isDark ? <LightModeIcon /> : <DarkModeIcon />,
-                                    //     handler: switchThemeMode,
-                                    // },
+                                     {
+                                         title: `${!isDark ? 'Dark' : 'Light'} Theme`,
+                                         Icon: !isDark ? <LightModeIcon /> : <DarkModeIcon />,
+                                         handler: switchThemeMode,
+                                     },
                                 ]}
                             />
                         </Box>

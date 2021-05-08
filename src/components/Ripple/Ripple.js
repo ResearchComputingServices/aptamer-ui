@@ -43,7 +43,7 @@ export default function Ripple({ color, className, style, size }) {
     const theme = useTheme();
     const colorMap = {
         primary: theme.palette.primary.main,
-        //secondary: theme.palette.secondary.main,
+        secondary: theme.palette.secondary.main,
         undefined: theme.palette.primary.main,
     };
     const circles = [0, 1].map(value => (
