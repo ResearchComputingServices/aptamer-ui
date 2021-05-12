@@ -64,16 +64,6 @@ export default [
         //options: ['Central Kurdish', 'Northern Kurdish', 'Southern Kurdish', 'Zazaki', 'Gurani', 'Hawrami', 'Laki', 'Badini', 'Other'],
         required: false,
     },
-
-
-    //{
-        //field: 'name',
-        //title: 'Title',
-        //required: false,
-    //},
-
-
-
     {
         field: 'numberofselectionrounds',
         title: 'Number of Selection Rounds',
