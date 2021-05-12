@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export default [
     //{
         //field: 'name',
@@ -7,6 +9,8 @@ export default [
     {
         field: 'id',
         title: 'Id',
+        disabled: data => !_.isNil(data.id),
+        display: data => !_.isNil(data.id),
     },
     {
         field: 'pubmedid',
@@ -60,16 +64,6 @@ export default [
         //options: ['Central Kurdish', 'Northern Kurdish', 'Southern Kurdish', 'Zazaki', 'Gurani', 'Hawrami', 'Laki', 'Badini', 'Other'],
         required: false,
     },
-
-
-    //{
-        //field: 'name',
-        //title: 'Title',
-        //required: false,
-    //},
-
-
-
     {
         field: 'numberofselectionrounds',
         title: 'Number of Selection Rounds',

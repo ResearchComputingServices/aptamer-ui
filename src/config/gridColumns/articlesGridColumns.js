@@ -4,6 +4,10 @@ export default [
         //title: 'Title',
     //},
     {
+        field: 'id',
+        title: 'Id',
+    },
+    {
         field: 'pubmedid',
         title: 'PubMed ID',
     },
