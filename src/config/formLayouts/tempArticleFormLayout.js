@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export default [
     //{
         //field: 'name',
@@ -7,6 +9,8 @@ export default [
     {
         field: 'id',
         title: 'Id',
+        disabled: data => !_.isNil(data.id),
+        display: data => !_.isNil(data.id),
     },
     {
         field: 'pubmedid',
