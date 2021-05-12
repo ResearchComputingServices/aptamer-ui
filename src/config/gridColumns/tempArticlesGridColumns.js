@@ -9,7 +9,7 @@ export default [
     },
     {
         field: 'pubmedid',
-        title: 'PubMed ID',     
+        title: 'PubMed ID',
     },
     {
         field: 'doinumber',
